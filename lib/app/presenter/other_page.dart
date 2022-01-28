@@ -45,7 +45,7 @@ class _OtherPageState extends State<OtherPage> {
   void _onPressed() async {
     await mlkit.loadLibrary();
     await getx.loadLibrary();
-    bloc.loadLibrary();
+    await bloc.loadLibrary();
     mlkit.Entity("");
   }
 }
