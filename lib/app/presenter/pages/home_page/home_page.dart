@@ -2,17 +2,17 @@ import 'package:deferred_teste/app/core/consts/routes.dart';
 import 'package:deferred_teste/app/presenter/pages/home_page/home_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../other_page/other_page.dart';
 import 'package:flutter/material.dart';
-import '../../../deferred_class.dart' deferred as deferred_lazy;
-import 'dart:math' deferred as math;
-import 'package:get/get.dart' deferred as getx
-    show GetX, GetBuilder, GetConnect, GetMaterialApp;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final HomeController controller = Modular.get();
-
-  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                  onPressed: _onPressed,
+                  onPressed: controller.onPressed,
                   child: const Text("Start Lazy Loading")),
               const VerticalDivider(
                 color: Colors.transparent,
@@ -56,16 +56,5 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _onPressed() async {
-    controller.isLoading = true;
-    await math.loadLibrary();
-    await deferred_lazy.loadLibrary();
-    await getx.loadLibrary();
-    controller.isLoading = false;
-    controller.lazyIsLoaded = true;
-
-    deferred_lazy.Deferred().lazy("Hello World");
   }
 }

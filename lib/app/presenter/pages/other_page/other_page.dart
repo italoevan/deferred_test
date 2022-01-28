@@ -1,20 +1,6 @@
 import 'package:deferred_teste/app/presenter/pages/other_page/other_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:get/get.dart' deferred as getx
-    show GetX, GetBuilder, GetConnect, GetMaterialApp;
-import 'package:bloc/bloc.dart' deferred as bloc;
-import 'package:google_ml_vision/google_ml_vision.dart' deferred as mlVision;
-import 'package:google_ml_kit/google_ml_kit.dart' deferred as mlkit
-    show
-        AddressEntity,
-        BarcodeAddress,
-        BarcodeDriverLicense,
-        Barcode,
-        Entity,
-        Label,
-        Pose,
-        InputImagePlaneMetadata;
 
 class OtherPage extends StatefulWidget {
   final OtherController controller = Modular.get();
@@ -62,23 +48,12 @@ class _OtherPageState extends State<OtherPage> {
                 color: Colors.transparent,
               ),
               ElevatedButton(
-                  onPressed: _onPressed,
+                  onPressed: widget.controller.onPressed,
                   child: const Text("Start Lazy Loading"))
             ],
           ),
         ],
       ),
     );
-  }
-
-  void _onPressed() async {
-    widget.controller.isLoading = true;
-    await mlkit.loadLibrary();
-    await getx.loadLibrary();
-    await bloc.loadLibrary();
-    await mlVision.loadLibrary();
-    mlkit.Entity("");
-    widget.controller.isLoading = false;
-    widget.controller.lazyIsLoaded = true;
   }
 }
