@@ -38,6 +38,7 @@ dependencies:
   google_ml_kit: ^0.7.3
   flutter_bloc:
   flutter_modular: 
+  google_ml_vision: ^0.0.7
 
 dev_dependencies:
   flutter_test:
